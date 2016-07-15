@@ -17,10 +17,6 @@ include_directories(
 	${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-link_directories(
-	${ROOT_LIBRARY_DIR}
-)
-
 root_generate_dictionary(
 	root-test-io_Cint
 	MyEvent.h
