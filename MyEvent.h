@@ -29,10 +29,10 @@ public:
 
    virtual void Print(Option_t* option = "") const
    {
-		std::cout << "my set: " << std::endl;
+      std::cout << "my set: " << std::endl;
       for (const MyBaseObj* myEntry: mySet) {
          myEntry->Print();
-		   std::cout << std::endl;
+         std::cout << std::endl;
       }
    }
 

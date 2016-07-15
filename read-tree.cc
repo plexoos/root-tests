@@ -7,7 +7,7 @@
 int main(int argc, char **argv)
 {
    TChain* myTreeChain = new TChain("t", "My Test TTree");
-	myTreeChain->AddFile("mytree.root");
+   myTreeChain->AddFile("mytree.root");
 
    MyEvent* myEvent = new MyEvent();
 
@@ -23,7 +23,7 @@ int main(int argc, char **argv)
    }
 
    delete myEvent;
-	delete myTreeChain;
+   delete myTreeChain;
 
    return EXIT_SUCCESS;
 }
