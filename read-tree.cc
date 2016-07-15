@@ -17,9 +17,9 @@ int main(int argc, char **argv)
 
    for (int iEvent = 1; iEvent <= nTreeEvents; iEvent++)
    {
-		myEvent->Clear();
-		myTreeChain->GetEntry(iEvent-1);
-		myEvent->Print();
+      myEvent->Clear();
+      myTreeChain->GetEntry(iEvent-1);
+      myEvent->Print();
    }
 
    delete myEvent;

@@ -14,10 +14,10 @@ public:
    MyDerivObj() : MyBaseObj(), c(30+rand()%10) {}
 
    virtual void Print(Option_t* option = "") const
-	{
-		MyBaseObj::Print(option);
-		std::cout << "\tc: " << c;
-	}
+   {
+      MyBaseObj::Print(option);
+      std::cout << "\tc: " << c;
+   }
 
 protected:
 
