@@ -38,6 +38,7 @@ add_library(
 add_executable(write-tree write-tree.cc)
 add_executable(read-tree read-tree.cc)
 
+target_link_libraries(root-test-io ${ROOT_LIBRARIES})
 target_link_libraries(write-tree root-test-io ${ROOT_LIBRARIES})
 target_link_libraries(read-tree root-test-io ${ROOT_LIBRARIES})
 
