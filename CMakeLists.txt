@@ -38,8 +38,11 @@ add_library(
 add_executable(write-tree write-tree.cc)
 add_executable(read-tree read-tree.cc)
 
+set_property(TARGET root-test-io PROPERTY CXX_STANDARD 11)
 target_link_libraries(root-test-io ${ROOT_LIBRARIES})
+set_property(TARGET write-tree PROPERTY CXX_STANDARD 11)
 target_link_libraries(write-tree root-test-io ${ROOT_LIBRARIES})
+set_property(TARGET read-tree PROPERTY CXX_STANDARD 11)
 target_link_libraries(read-tree root-test-io ${ROOT_LIBRARIES})
 
 string(REGEX MATCH "(^|[\t ]+)-m([\t ]*)(32|64)([\t ]+|$)" ROOT_CXX_FLAGS_M ${ROOT_CXX_FLAGS})
