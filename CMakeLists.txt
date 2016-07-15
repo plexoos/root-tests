@@ -2,15 +2,6 @@ cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
 project(root-test-io)
 
-option(FORCE_32BIT "compile 32-bit application" ON)
-
-if(FORCE_32BIT)
-	set_property(GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS OFF)
-	set(CMAKE_CXX_FLAGS "-m32 -std=c++0x")
-endif()
-
-
-
 # Add to path in order to pick up the FindXXX.cmake files included in this project
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}")
 
@@ -50,8 +41,13 @@ add_executable(read-tree read-tree.cc)
 target_link_libraries(write-tree root-test-io ${ROOT_LIBRARIES})
 target_link_libraries(read-tree root-test-io ${ROOT_LIBRARIES})
 
-if(FORCE_32BIT)
-	set_target_properties(root-test-io PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
-	set_target_properties(write-tree PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
-	set_target_properties(read-tree PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
+string(REGEX MATCH "(^|[\t ]+)-m([\t ]*)(32|64)([\t ]+|$)" ROOT_CXX_FLAGS_M ${ROOT_CXX_FLAGS})
+
+if (ROOT_CXX_FLAGS_M)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m${CMAKE_MATCH_3}")
+	message(STATUS "Found -m${CMAKE_MATCH_3} option in $ROOT_CXX_FLAGS (root-config). Will add it to $CMAKE_CXX_FLAGS")
+
+	if (CMAKE_MATCH_3 EQUAL 32)
+		set_property(GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS OFF)
+	endif()
 endif()
